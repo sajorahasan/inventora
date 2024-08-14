@@ -71,14 +71,14 @@ export const api = createApi({
       query: () => "/dashboard",
       providesTags: ["DashboardMetrics"],
     }),
-    getProducts: build.query<Product[], string | void>({
+    getProducts: build.query<APIResponse<Product[]>, string | void>({
       query: (search) => ({
         url: "/products",
         params: search ? { search } : {},
       }),
       providesTags: ["Products"],
     }),
-    createProduct: build.mutation<Product, NewProduct>({
+    createProduct: build.mutation<APIResponse<Product>, NewProduct>({
       query: (newProduct) => ({
         url: "/products",
         method: "POST",
@@ -86,11 +86,11 @@ export const api = createApi({
       }),
       invalidatesTags: ["Products"],
     }),
-    getUsers: build.query<User[], void>({
+    getUsers: build.query<APIResponse<User[]>, void>({
       query: () => "/users",
       providesTags: ["Users"],
     }),
-    getExpensesByCategory: build.query<ExpenseByCategorySummary[], void>({
+    getExpensesByCategory: build.query<APIResponse<ExpenseByCategorySummary[]>, void>({
       query: () => "/expenses",
       providesTags: ["Expenses"],
     }),
